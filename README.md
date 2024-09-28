@@ -1,9 +1,75 @@
 # SiVillage 데이터 스크래핑
-- 데이터는 포함하지 않습니다.
-- assignee: 주성광(이벤트,카테고리)
+- SIVILLAGE 리빌딩 프로젝트에 필요한 데이터를 스크래핑하는 `.py` 파일을 공유합니다.
+- repository에 데이터는 업로드 하지 않습니다.
+- contributor: 홍정현(상품,브랜드), 주성광(이벤트,카테고리)
 
 <details>
-  <summary><h2>event</h2></summary>
+  <summary> <h3>product & brand</h3> </summary>
+
+**author : 홍정현**
+
+브랜드, 상품 정보를 스크래핑하여 `json` 및 `csv` 파일로 저장합니다.
+
+## 설명
+
+### 브라우저 자동화를 사용하지 않음
+- `selenium`과 같은 브라우저 자동화의 경우 `Client Side Rendering`페이지를 다룰 수 있다는 장점이 있지만, 브라우저를 직접 구동하기 때문에 시간이 매우 오래 걸립니다.
+- `Server Side Rendering` 페이지의 경우 `GET` 요청을 통해 완성된 페이지를 가져옵니다. 이 경우 브라우저 자동화는 불필요하며, `GET` 요청은 브라우저 구동이 없어 성능을 개선할 수 있습니다.
+- 데이터의 경우 데스크탑 페이지나 모바일 페이지나 동일하기 떄문에 모바일 페이지와 데스크탑 페이지 중 `SSR` 처리가 된 페이지를 적절히 요청하여 성능을 개선하였습니다.
+
+### `aiohttp`, `asyncio`를 통한 비동기 요청
+- 동시에 여러 개의 요청을 보낼 수 있도록하여 성능을 개선합니다.
+- 초당 요청 횟수를 제한하여, 트래픽이 차단되지 않도록합니다.
+
+### 멀티 스레딩
+- 파일을 읽고 쓰는 작업은 IO intensive한 작업입니다.
+- IO intensive한 파일 읽기 및 저장에 멀티 스레딩을 사용하여 성능을 개선합니다.
+
+### 멀티 프로세싱
+- 파일을 파싱하는 작업은 CPU intensive한 작업입니다.
+- CPU intensive한 파일 파싱 작업을 위해 멀티 프로세싱을 사용하여 성능을 개선합니다.
+
+
+## `.py` 파일 소개
+
+### `category.py`
+
+- 카테고리 정보를 스크래핑하여 저장합니다.
+
+### `brand.py`
+
+- 브랜드 정보를 스크래핑하여 저장합니다.
+
+### `dataclass.py`
+
+- 상품 관련 `dataclass`를 정의합니다.
+
+### `fetch.py`
+
+- 비동기 요청을 위한 보일러플레이트 함수
+
+### `product_code.py`
+
+- 카테고리 코드를 불러와, 카테고리 별 상품코드을 최대 2페이지 (최대 120개)까지 스크래핑하여 저장합니다.
+
+### `product_detail.py`
+
+- 상품코드를 읽어와 코드에 해당하는 상품 상세 페이지를 html 문서로 저장합니다.
+
+### `product_data.py`
+
+- 상품 상제 html 문서를 읽어와 상품 관련 정보를 스크래핑히야 저장합니다.
+
+### `merge_product data`
+
+
+</details>
+
+<details>
+  <summary><h3>event</h3></summary>
+
+  **작성자 : 주성광**
+
 
 - event 폴더
   - .py 및 eventlist.json
@@ -98,7 +164,9 @@
   
 </details>
 <details>
-  <summary><h2>category</h2></summary>
+  <summary><h3>category</h3></summary>
+
+**작성자 : 주성광**
 
 - category.md
 ```
