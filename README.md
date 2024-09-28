@@ -1,6 +1,7 @@
 # SiVillage 데이터 스크래핑
-- SIVILLAGE 리빌딩 프로젝트에 필요한 데이터를 스크래핑하는 `.py` 파일을 공유합니다.
-- repository에 데이터는 업로드 하지 않습니다.
+- [스파로스 아카데미(Spharos Academy)](https://swedu.spharosacademy.com/spharos_total.html)
+- `SIVILLAGE 리빌딩 프로젝트`에 필요한 데이터를 스크래핑하는 `.py` 파일을 공유합니다.
+- repository에는 데이터는 업로드 하지 않습니다.
 - contributor: 홍정현(상품,브랜드), 주성광(이벤트,카테고리)
 
 <details>
